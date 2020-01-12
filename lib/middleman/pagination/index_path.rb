@@ -38,8 +38,12 @@ module Middleman
       end
 
       def index_file_pattern
-        index_file_ext = File.extname(extension_context.index_file)
-        index_file_path = extension_context.index_file.delete(index_file_ext)
+        # middleman v4 seem to have removed index_file from ext context.
+        # i couldn't find where else they have placed it inside,
+        # until i do, hardcoding the index file like a cave man.
+        index_file = "/index.html.erb"
+        index_file_ext = File.extname(index_file)
+        index_file_path = index_file.delete(index_file_ext)
 
         %r{
           (/)?                                # An optional slash
